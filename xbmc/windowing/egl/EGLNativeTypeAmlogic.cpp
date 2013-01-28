@@ -171,11 +171,17 @@ bool CEGLNativeTypeAmlogic::ProbeResolutions(std::vector<RESOLUTION_INFO> &resol
 
   resolutions.clear();
   RESOLUTION_INFO res;
+  #if 0
   for (size_t i = 0; i < probe_str.size(); i++)
   {
     if(ModeToResolution(probe_str[i].c_str(), &res))
       resolutions.push_back(res);
   }
+  #else
+  // force probed to 720p
+  ModeToResolution("720p", &res);
+  resolutions.push_back(res);
+  #endif
   return resolutions.size() > 0;
 
 }
